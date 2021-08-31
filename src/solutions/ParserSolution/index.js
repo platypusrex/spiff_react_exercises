@@ -5,6 +5,7 @@ import { parseString } from './parseString';
 export const ParserSolution = () => {
   const [value, setValue] = useState('');
   const [parsedData, setParsedData] = useState(null);
+  const [displayResult, setDisplayResult] = useState(null);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -12,12 +13,21 @@ export const ParserSolution = () => {
 
   const handleReset = () => {
     setValue('');
+    setDisplayResult(null);
     setParsedData(null);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisplayResult(null);
     setParsedData(parseString(value))
+  };
+
+  const handleSetDisplayResult = (key) => {
+    const result = value.split('').map((char) => (
+      <span className={char.toLowerCase() === key ? 'active' : ''}>{char}</span>
+    ));
+    setDisplayResult(result);
   };
 
   return (
@@ -40,14 +50,21 @@ export const ParserSolution = () => {
       <div className="parser__result">
         <h4>Result</h4>
         {parsedData ? (
-          <ul className="parser__list">
-            {Object.keys(parsedData).map(key => (
-              <li>
-                <p>{key}: {' '}</p>
-                <p>{parsedData[key]}</p>
-              </li>
-            ))}
-          </ul>
+          <>
+            {displayResult && (
+              <p className="parser__display">
+                {displayResult}
+              </p>
+            )}
+            <ul className="parser__list">
+              {Object.keys(parsedData).map(key => (
+                <li onClick={() => handleSetDisplayResult(key)}>
+                  <p>{key}: {' '}</p>
+                  <p>{parsedData[key]}</p>
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
           <p>Enter text to see your alphabetic character count...</p>
         )}
