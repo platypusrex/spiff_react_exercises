@@ -30,8 +30,7 @@ export const ProgressBarSolution = () => {
   );
 
   const resetTimer = () => {
-    // clear out the timer ref
-    // clearTimeout(requestTimer.current);
+    // clear out the timer
     clearTimeout(requestTimer);
   }
 
@@ -41,7 +40,6 @@ export const ProgressBarSolution = () => {
 
     // reset all timer data
     resetTimer();
-    // requestTimer.current = null;
     setRequestTimer(undefined);
   }
 
@@ -67,10 +65,10 @@ export const ProgressBarSolution = () => {
     // dispatch the progress bar loading state
     dispatch({ type: LOADING });
 
-    // start a mock request of 15s (this is hideous)
+    // start a mock request of 15s (pretty sure this isn't ideal)
     const timer = setTimeout(() => {
       // if request exceeds 15s this should hang so do nothing here
-      // only the finish handler should complete the request? (interesting behavior specs)
+      // only the finish handler should complete the request?
     }, LOADING_DURATION);
     setRequestTimer(timer);
   };
