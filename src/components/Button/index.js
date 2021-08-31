@@ -23,9 +23,10 @@ export const Button = ({ children, variant = 'success', disabled, onClick }) => 
       btn.classList.remove('clicked');
     }
     btn.addEventListener('mouseup', onMouseUp);
-
+    btn.addEventListener('mouseleave', onMouseUp)
     return () => {
       btn.removeEventListener('mouseup', onMouseUp);
+      btn.removeEventListener('mouseleave', onMouseUp);
     };
   });
 

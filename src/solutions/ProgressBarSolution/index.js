@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import { Button } from '../../components/Button';
 import { ProgressBar } from '../../components/ProgressBar';
+import { ProgressBarToggle } from './ProgressBarToggle';
 
 const LOADING_DURATION = 15000;
 const COMPLETE_DURATION = 1000;
@@ -23,6 +24,7 @@ const reducer = (state, action) => {
 };
 
 export const ProgressBarSolution = () => {
+  const [value, setValue] = useState('simple')
   const [requestTimer, setRequestTimer] = useState()
   const [{ percent, transitionTiming }, dispatch] = useReducer(
     reducer,
@@ -80,10 +82,27 @@ export const ProgressBarSolution = () => {
     handleComplete();
   };
 
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    handleInactive();
+  }
+
   return (
     <div className="progress-bar-solution">
-      <ProgressBar percent={percent} transitionTiming={transitionTiming} />
-      <div className="progress-bar-solution__button-group">
+      {value === 'simple' ? (
+        <ProgressBar
+          percent={percent}
+          transitionTiming={transitionTiming}
+        />
+      ) : (
+        <ProgressBar
+          percent={percent}
+          transitionTiming={transitionTiming}
+          breakpoints={[20, 40, 60, 80]}
+        />
+      )}
+      <div className="progress-bar-solution__content">
+        <ProgressBarToggle value={value} onChange={handleChange} />
         <Button onClick={handleStartRequest} disabled={requestTimer}>
           Start request
         </Button>
