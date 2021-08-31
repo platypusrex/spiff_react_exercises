@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export const Button = ({ children, variant = 'success', disabled, onClick }) => {
+export const Button = ({ children, variant = 'success', disabled, type, onClick }) => {
   const buttonRef = useRef(null);
 
   // both useEffect blocks are here to support the 'clicked' animation requirements
@@ -33,6 +33,7 @@ export const Button = ({ children, variant = 'success', disabled, onClick }) => 
   return (
     <button
       disabled={disabled}
+      type={type}
       className={`button ${disabled ? 'disabled' : `${variant}`}`}
       ref={buttonRef}
       onClick={onClick}

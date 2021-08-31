@@ -1,0 +1,73 @@
+.parser {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+.parser__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.parser__form label {
+  color: $gray;
+  margin-bottom: 1rem;
+}
+
+.parser__form textarea {
+  border: 1px $gray-lighter solid;
+  background-color: $white;
+  border-radius: 4px;
+  font-family: $standard-font;
+  resize: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.parser__button-group {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+  gap: 1rem;
+  row-gap: 1rem;
+}
+
+.parser__result h4 {
+  color: $gray;
+  margin-block: 0 1rem;
+  font-weight: normal;
+}
+
+.parser__list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(6, minmax(auto, 0px));
+  gap: 0.5rem;
+
+  li {
+    border: 1px solid $gray-light;
+    display: flex;
+    background-color: $white;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.parser__result {
+  margin-bottom: 0.5rem;
+
+  h4 {
+    color: $gray;
+    margin-block: 0 1rem;
+    font-weight: normal;
+  }
+}
