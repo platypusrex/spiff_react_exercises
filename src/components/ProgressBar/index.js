@@ -4,15 +4,15 @@ import { useBreakpoints } from './useBreakpoints';
 export const ProgressBar = ({ percent, transitionTiming = 1000, breakpoints }) => {
   const [breakpoint, setBreakpointTiming] = useState(null);
 
-   // Using the resize abserver API to obtain the current width of the progress bar,
+   // Using the resize observer API to obtain the current width of the progress bar,
    // determine whether it's 'in range' of a breakpoint,
    // and also recalculate the duration based on current width in percentage (this should ensure the animation still completes in 15s),
    // The hook itself only runs if breakpoints are provided by the consumer
   const { ref } = useBreakpoints({
     breakpoints,
     onBreakpointInRange: (inRange, currentPercent, timing) => {
-      // if percent is === 100 then we need to short circuit the breakpoint logic and complete the progress
-      if (percent === 100) {
+      // if percent is === 100 | <= 0 then we need to short circuit the breakpoint in range logic
+      if (percent === 100 || percent <= 0) {
         setBreakpointTiming(null);
         return;
       }
@@ -23,9 +23,7 @@ export const ProgressBar = ({ percent, transitionTiming = 1000, breakpoints }) =
       } else {
         // if our percent is zero reset the breakpoint timing
         // else update timing according to useBreakpoints calculation
-        percent > 0
-          ? setBreakpointTiming({ timing, percent })
-          : setBreakpointTiming(null);
+        setBreakpointTiming({ timing, percent })
       }
     }
   });
