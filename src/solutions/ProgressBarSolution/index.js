@@ -45,19 +45,6 @@ export const ProgressBarSolution = () => {
     setRequestTimer(undefined);
   }
 
-  const handleComplete = () => {
-    // clear current in flight request timeout and dispatch completion
-    resetTimer();
-    dispatch({ type: COMPLETE });
-
-    // start new timer for the completion phase
-    // dispatch inactive after timeout of 4s to set progress back to initial state
-    const timer = setTimeout(() => {
-      handleInactive();
-    }, 4000);
-    setRequestTimer(timer)
-  }
-
   const handleStartRequest = () => {
     // short circuit if request is in flight
     if (requestTimer) {
@@ -79,7 +66,17 @@ export const ProgressBarSolution = () => {
     if (percent === 0 || percent === 100) {
       return;
     }
-    handleComplete();
+
+    // clear current in flight request timeout and dispatch completion
+    resetTimer();
+    dispatch({ type: COMPLETE });
+
+    // start new timer for the completion phase
+    // dispatch inactive after timeout of 4s to set progress back to initial state
+    const timer = setTimeout(() => {
+      handleInactive();
+    }, 4000);
+    setRequestTimer(timer);
   };
 
   const handleChange = (e) => {

@@ -24,7 +24,7 @@ export const ProgressBar = ({ percent, transitionTiming = 1000, breakpoints }) =
         setBreakpointTiming({ timing: BREAKPOINT_DURATION, percent: currentPercent + 10 })
       } else {
         // if our percent is zero reset the breakpoint timing
-        // else update timing according to useBreakpoints calculation
+        // update timing according to useBreakpoints calculation with consumer provided percent
         setBreakpointTiming({ timing, percent })
       }
     }
