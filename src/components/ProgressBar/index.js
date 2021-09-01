@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useBreakpoints } from './useBreakpoints';
 
+const BREAKPOINT_DURATION = 20000;
+
 export const ProgressBar = ({ percent, transitionTiming = 1000, breakpoints }) => {
   const [breakpoint, setBreakpointTiming] = useState(null);
 
@@ -19,7 +21,7 @@ export const ProgressBar = ({ percent, transitionTiming = 1000, breakpoints }) =
 
       // if we're in breakpoint range override the current timing and percent complete
       if (inRange) {
-        setBreakpointTiming({ timing: 20000, percent: currentPercent + 10 })
+        setBreakpointTiming({ timing: BREAKPOINT_DURATION, percent: currentPercent + 10 })
       } else {
         // if our percent is zero reset the breakpoint timing
         // else update timing according to useBreakpoints calculation
