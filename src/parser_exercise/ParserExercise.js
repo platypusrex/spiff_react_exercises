@@ -1,11 +1,12 @@
 import React from "react";
 import Exercise from "../exercise/Exercise";
+import { ParserSolution } from '../solutions/ParserSolution';
 
 const ParserExercise = () => {
   return (
     <div className="parser">
       <Exercise
-        solution={<Solution />}
+        solution={<ParserSolution />}
         specsUrl="https://github.com/SpiffInc/spiff_react_exercises/issues/2"
         title="Parser Exercise"
       />
@@ -14,9 +15,3 @@ const ParserExercise = () => {
 };
 
 export default ParserExercise;
-
-// ----------------------------------------------------------------------------------
-
-const Solution = () => {
-  return <div>Add solution here</div>;
-};

@@ -22,6 +22,19 @@
     }
   }
 
+  &.warning {
+    border-color: $sunrise;
+    color: $sunrise;
+
+    &:hover {
+      box-shadow: inset 0 0 0 1px $sunrise;
+    }
+
+    &.clicked {
+      box-shadow: inset 0 0 0 2px $sunrise;
+    }
+  }
+
   &.error {
     border-color: $red;
     color: $red;
